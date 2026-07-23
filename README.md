@@ -1,0 +1,2 @@
+# uygar-bern
+Bernacigima hediye
