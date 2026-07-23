@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Berna" />
+  <link rel="apple-touch-icon" href="icons/icon-180.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Berna</title>
+</head>
+<body>
+  <div id="photoBackground" class="photo-background" aria-hidden="true"></div>
+  <div id="backgroundOverlay" class="background-overlay" aria-hidden="true"></div>
+
+  <main class="app-shell">
+    <header class="topbar glass-panel">
+      <div>
+        <p class="eyebrow">FOCUS WITH MIKI</p>
+        <h1>BERNA</h1>
+      </div>
+      <button id="settingsButton" class="icon-button" aria-label="Ayarlar">•••</button>
+    </header>
+
+    <section class="timer-card glass-panel" aria-labelledby="modeLabel">
+      <div class="mode-tabs" role="tablist" aria-label="Sayaç modu">
+        <button class="mode-tab active" data-mode="focus" role="tab">Çalışma</button>
+        <button class="mode-tab" data-mode="short" role="tab">Kısa mola</button>
+        <button class="mode-tab" data-mode="long" role="tab">Uzun mola</button>
+      </div>
+
+      <p id="modeLabel" class="status-label">ODAK ZAMANI</p>
+      <div id="timer" class="timer" aria-live="polite">25:00</div>
+
+      <div id="mikiScene" class="miki-scene stage-0" role="img" aria-label="Gri kedi Miki">
+        <div class="sparkles" aria-hidden="true"><i>✦</i><i>✧</i><i>✦</i></div>
+        <div class="book" aria-hidden="true"><span></span></div>
+        <button id="mikiButton" class="miki" type="button" aria-label="Miki'yi sev">
+          <span class="tail"></span>
+          <span class="body"></span>
+          <span class="head">
+            <span class="ear ear-left"></span><span class="ear ear-right"></span>
+            <span class="eye eye-left"></span><span class="eye eye-right"></span>
+            <span class="nose"></span><span class="mouth"></span>
+            <span class="whisker w1"></span><span class="whisker w2"></span>
+            <span class="whisker w3"></span><span class="whisker w4"></span>
+          </span>
+          <span class="paw paw-left"></span><span class="paw paw-right"></span>
+        </button>
+        <div class="cushion" aria-hidden="true"></div>
+      </div>
+
+      <p id="mikiMessage" class="miki-message">Miki seninle çalışmaya hazır.</p>
+      <p id="sessionHint" class="session-hint">Telefonu bırak. Sadece bu oturuma odaklan.</p>
+
+      <div class="controls">
+        <button id="resetButton" class="secondary-button">Sıfırla</button>
+        <button id="startButton" class="primary-button">Başlat</button>
+      </div>
+    </section>
+
+    <section class="subject-card glass-panel">
+      <label for="subjectSelect">DERS</label>
+      <div class="select-wrap">
+        <select id="subjectSelect">
+          <option>Psikoloji</option><option>İngilizce</option><option>Python</option><option>Genel tekrar</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="stats-grid" aria-label="Günlük istatistikler">
+      <article class="stat-card glass-panel"><span>BUGÜN</span><strong id="todayMinutes">0 dk</strong><small>Toplam odak</small></article>
+      <article class="stat-card glass-panel"><span>POMODORO</span><strong id="pomodoroCount">0</strong><small>Tamamlandı</small></article>
+      <article class="stat-card wide glass-panel">
+        <div><span>SERİ</span><strong id="streakCount">0 gün</strong></div>
+        <p id="streakMessage">İlk çalışma gününü başlat.</p>
+      </article>
+    </section>
+
+    <section class="progress-card glass-panel">
+      <div class="progress-header"><div><span>GÜNLÜK HEDEF</span><strong id="goalLabel">0 / 120 dk</strong></div><span id="goalPercent">0%</span></div>
+      <div class="progress-track" aria-hidden="true"><div id="progressBar" class="progress-bar"></div></div>
+    </section>
+
+    <footer><p>Bugün biraz ilerlemek, hiç başlamamaktan iyidir.</p></footer>
+  </main>
+
+  <dialog id="settingsDialog">
+    <form method="dialog" class="settings-panel">
+      <div class="dialog-header">
+        <div><p class="eyebrow">BERNA</p><h2>Ayarlar</h2></div>
+        <button class="icon-button" value="cancel" aria-label="Kapat">×</button>
+      </div>
+
+      <section class="settings-section">
+        <h3>Süreler</h3>
+        <div class="setting-grid">
+          <label>Çalışma süresi<input id="focusDuration" type="number" min="1" max="90" value="25" /></label>
+          <label>Kısa mola<input id="shortDuration" type="number" min="1" max="30" value="5" /></label>
+          <label>Uzun mola<input id="longDuration" type="number" min="1" max="60" value="15" /></label>
+          <label>Günlük hedef<input id="dailyGoal" type="number" min="10" max="600" step="10" value="120" /></label>
+        </div>
+      </section>
+
+      <section class="settings-section">
+        <h3>Arka plan fotoğrafı</h3>
+        <p class="privacy-note">Fotoğraf yalnızca bu telefonda saklanır, sunucuya yüklenmez.</p>
+        <input id="backgroundInput" class="file-input" type="file" accept="image/*" />
+        <label class="upload-button" for="backgroundInput">Galeriden fotoğraf seç</label>
+        <button id="removeBackgroundButton" type="button" class="secondary-button compact">Fotoğrafı kaldır</button>
+
+        <label>Karartma <output id="darknessValue">58%</output>
+          <input id="backgroundDarkness" type="range" min="20" max="90" value="58" />
+        </label>
+        <label>Bulanıklık <output id="blurValue">2 px</output>
+          <input id="backgroundBlur" type="range" min="0" max="16" value="2" />
+        </label>
+      </section>
+
+      <button id="saveSettingsButton" class="primary-button" value="default">Kaydet</button>
+      <button id="clearDataButton" type="button" class="danger-button">İstatistikleri sıfırla</button>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
