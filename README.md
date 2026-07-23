@@ -1,17 +1,16 @@
-# Berna – Focus with Miki V2
+# Berna – Focus with Miki V3
 
-Minimal siyah-beyaz, iPhone ana ekranına eklenebilir Pomodoro uygulaması.
+Berna'nın üçüncü sürümü; ücretsiz, iPhone ana ekranına eklenebilir ve çevrimdışı çalışabilen bir ders çalışma uygulamasıdır.
 
-## V2 yenilikleri
-- Günlük yapılacaklar listesi
-- Özel ders ekleme ve silme
-- Son 7 gün çalışma grafiği
-- Ders bazında çalışma süresi
-- Miki'nin toplam Pomodoro sayısına göre gelişen odası
-- Dört Pomodoro sonunda otomatik uzun mola
-- İsteğe bağlı otomatik sonraki oturumu başlatma
-- Geliştirilmiş çevrimdışı önbellek
-- Eski V1 verilerini koruma
+## V3 yenilikleri
+- Yağmur, kafe ve derin gürültü odak sesleri
+- Her Pomodoro için çalışma hedefi/notu
+- Tamamlanan son oturumların odak günlüğü
+- Sınav adı ve tarihine göre geri sayım
+- Altı farklı başarı rozeti
+- Tüm verileri JSON yedeği olarak dışa aktarma
+- Yedek dosyasından verileri geri yükleme
+- V1 ve V2 verileriyle uyumluluk
 
-## Güncelleme
-GitHub reposundaki eski uygulama dosyalarını bu pakettekilerle değiştirin. GitHub Pages birkaç dakika içinde V2'yi yayınlar.
+## GitHub güncellemesi
+ZIP'i açın ve içindeki dosyaları repository'nin kök dizinine yükleyerek mevcut dosyaların üzerine yazın. Ardından Commit changes düğmesine basın.

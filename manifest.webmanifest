@@ -1,7 +1,7 @@
 {
-  "name": "Berna – Focus with Miki",
+  "name": "Berna – Focus with Miki V3",
   "short_name": "Berna",
-  "description": "Miki ile minimal Pomodoro ve ders çalışma uygulaması.",
+  "description": "Miki ile Pomodoro, görevler, odak sesleri, sınav geri sayımı ve çalışma istatistikleri.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

@@ -19,7 +19,7 @@
   <main class="app-shell">
     <header class="topbar glass-panel">
       <div>
-        <p class="eyebrow">FOCUS WITH MIKI · V2</p>
+        <p class="eyebrow">FOCUS WITH MIKI · V3</p>
         <h1>BERNA</h1>
       </div>
       <button id="settingsButton" class="icon-button" aria-label="Ayarlar">•••</button>
@@ -29,6 +29,7 @@
       <button class="main-tab active" data-page="focusPage">Odak</button>
       <button class="main-tab" data-page="tasksPage">Görevler</button>
       <button class="main-tab" data-page="statsPage">İstatistik</button>
+      <button class="main-tab" data-page="morePage">Daha fazla</button>
     </nav>
 
     <section id="focusPage" class="page active">
@@ -76,6 +77,23 @@
         <label for="subjectSelect">DERS</label>
         <select id="subjectSelect"></select>
         <button id="quickTaskButton" class="mini-button">+ Görev</button>
+      </section>
+
+      <section class="focus-tools glass-panel">
+        <div class="focus-note-wrap">
+          <label for="focusNote">BU OTURUMUN HEDEFİ</label>
+          <input id="focusNote" maxlength="100" placeholder="Örn. Klinik psikoloji 3. bölüm" />
+        </div>
+        <div class="ambience-wrap">
+          <label for="ambientSelect">ODAK SESİ</label>
+          <select id="ambientSelect">
+            <option value="off">Kapalı</option>
+            <option value="rain">Yağmur</option>
+            <option value="cafe">Kafe</option>
+            <option value="brown">Derin gürültü</option>
+          </select>
+          <button id="ambientToggle" class="mini-button" type="button">Çal</button>
+        </div>
       </section>
 
       <section class="stats-grid">
@@ -130,6 +148,39 @@
         <div class="progress-track"><div id="roomProgress" class="progress-bar"></div></div>
         <small id="roomNext">Sonraki gelişim için 10 Pomodoro.</small>
       </section>
+      <section class="section-card glass-panel">
+        <div class="section-title"><div><p class="eyebrow">BAŞARILAR</p><h2>Rozetler</h2></div><strong id="badgeCount">0 / 6</strong></div>
+        <div id="badgeGrid" class="badge-grid"></div>
+      </section>
+    </section>
+
+    <section id="morePage" class="page">
+      <section class="section-card glass-panel">
+        <div class="section-title"><div><p class="eyebrow">SINAV</p><h2>Geri sayım</h2></div></div>
+        <div class="exam-card">
+          <input id="examName" maxlength="50" placeholder="Sınavın adı" />
+          <input id="examDate" type="date" />
+          <button id="saveExamButton" class="primary-button compact" type="button">Kaydet</button>
+        </div>
+        <div id="examCountdown" class="exam-countdown">
+          <strong>Henüz sınav eklenmedi</strong>
+          <small>Bir hedef tarihi eklediğinde burada geri sayım görünür.</small>
+        </div>
+      </section>
+
+      <section class="section-card glass-panel">
+        <div class="section-title"><div><p class="eyebrow">ODAK GÜNLÜĞÜ</p><h2>Son oturumlar</h2></div></div>
+        <div id="sessionLog" class="session-log"></div>
+      </section>
+
+      <section class="section-card glass-panel">
+        <div class="section-title"><div><p class="eyebrow">YEDEKLEME</p><h2>Verilerini koru</h2></div></div>
+        <p class="muted-copy">Tüm görevleri, istatistikleri, dersleri ve ayarları tek dosyada dışa aktar.</p>
+        <div class="backup-actions">
+          <button id="exportButton" class="primary-button compact" type="button">Yedeği indir</button>
+          <label class="secondary-button compact import-label">Yedek yükle<input id="importInput" type="file" accept="application/json" /></label>
+        </div>
+      </section>
     </section>
 
     <footer><p>Bugün biraz ilerlemek, hiç başlamamaktan iyidir.</p></footer>
@@ -138,7 +189,7 @@
   <dialog id="settingsDialog">
     <form method="dialog" class="settings-panel">
       <div class="dialog-header">
-        <div><p class="eyebrow">BERNA V2</p><h2>Ayarlar</h2></div>
+        <div><p class="eyebrow">BERNA V3</p><h2>Ayarlar</h2></div>
         <button class="icon-button" value="cancel" aria-label="Kapat">×</button>
       </div>
 
@@ -151,6 +202,7 @@
           <label>Günlük hedef<input id="dailyGoal" type="number" min="10" max="600" step="10" /></label>
         </div>
         <label class="switch-row">Oturum bitince otomatik başlat<input id="autoStart" type="checkbox" /><span class="switch"></span></label>
+        <label>Odak sesi seviyesi <output id="ambientVolumeValue"></output><input id="ambientVolume" type="range" min="5" max="70" /></label>
       </section>
 
       <section class="settings-section">
