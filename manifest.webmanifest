@@ -1,12 +1,12 @@
 {
-  "name": "Berna – Focus with Miki V3",
+  "name": "Berna – Focus with Miki V5",
   "short_name": "Berna",
-  "description": "Miki ile Pomodoro, görevler, odak sesleri, sınav geri sayımı ve çalışma istatistikleri.",
+  "description": "Piksel oda, ajanda, Pomodoro coinleri, sokak kedisi görünümleri ve arkadaş listesi.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#151019",
+  "theme_color": "#151019",
   "icons": [
     {
       "src": "icons/icon-180.png",

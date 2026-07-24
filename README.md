@@ -1,16 +1,31 @@
-# Berna – Focus with Miki V3
+# Berna – Focus with Miki V5
 
-Berna'nın üçüncü sürümü; ücretsiz, iPhone ana ekranına eklenebilir ve çevrimdışı çalışabilen bir ders çalışma uygulamasıdır.
+GitHub Pages üzerinde çalışan, iPhone ana ekranına eklenebilen cozy piksel Pomodoro uygulaması.
 
-## V3 yenilikleri
-- Yağmur, kafe ve derin gürültü odak sesleri
-- Her Pomodoro için çalışma hedefi/notu
-- Tamamlanan son oturumların odak günlüğü
-- Sınav adı ve tarihine göre geri sayım
-- Altı farklı başarı rozeti
-- Tüm verileri JSON yedeği olarak dışa aktarma
-- Yedek dosyasından verileri geri yükleme
-- V1 ve V2 verileriyle uyumluluk
+## V5 yenilikleri
 
-## GitHub güncellemesi
-ZIP'i açın ve içindeki dosyaları repository'nin kök dizinine yükleyerek mevcut dosyaların üzerine yazın. Ardından Commit changes düğmesine basın.
+- Özgün **Miki’nin Çatı Katı** piksel odası
+- 16 adet özgün piksel eşya görseli
+- Coin ile eşya satın alma, odaya koyma ve kaldırma
+- Zaman seçimi: sabah, gündüz, akşam, gece
+- Mevsim seçimi: ilkbahar, yaz, sonbahar, kış
+- Hava seçimi: açık, bulutlu, yağmurlu, karlı
+- Tekir, siyah, sarman, calico, smokin, Van desenli ve beyaz sokak kedisi görünümleri
+- Mama, tokluk ve Miki büyüme sistemi
+- Günlük giriş ödülü ve günlük görevler
+- Pomodoro ve seriyle açılan gizli eşyalar
+- Arkadaş kodu ve cihazda saklanan arkadaş listesi
+- Ajanda, sınav geri sayımı, istatistik, rozet ve yedekleme
+- V1–V4 verileriyle uyumluluk
+
+## GitHub’a yükleme
+
+1. ZIP dosyasını açın.
+2. İçindeki **tüm dosya ve klasörleri** `uygar-bern` repository’sinin kök dizinine yükleyin.
+3. Eski dosyaların üzerine yazılmasını onaylayın.
+4. **Commit changes** düğmesine basın.
+5. GitHub Pages birkaç dakika içinde V5’i yayınlar.
+
+## Arkadaş sistemi hakkında
+
+GitHub Pages yalnızca statik dosya barındırdığı için bu sürümde arkadaş kodları ve arkadaş listesi cihazda tutulur. Gerçek zamanlı arkadaş ilerlemesi, davetler ve ortak odak için ileride Firebase veya Supabase bağlantısı gerekir.

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#000000" />
+  <meta name="theme-color" content="#151019" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Berna" />
@@ -12,24 +12,22 @@
   <link rel="stylesheet" href="styles.css" />
   <title>Berna</title>
 </head>
-<body>
-  <div id="photoBackground" class="photo-background" aria-hidden="true"></div>
-  <div class="background-overlay" aria-hidden="true"></div>
-
+<body data-theme="midnight">
   <main class="app-shell">
     <header class="topbar glass-panel">
-      <div>
-        <p class="eyebrow">FOCUS WITH MIKI · V3</p>
-        <h1>BERNA</h1>
+      <div><p class="eyebrow">FOCUS WITH MIKI · V5</p><h1>BERNA</h1></div>
+      <div class="header-actions">
+        <button id="coinPill" class="coin-pill" type="button"><span>●</span><strong id="headerCoins">0</strong></button>
+        <button id="settingsButton" class="icon-button" type="button" aria-label="Ayarlar">•••</button>
       </div>
-      <button id="settingsButton" class="icon-button" aria-label="Ayarlar">•••</button>
     </header>
 
     <nav class="main-tabs glass-panel" aria-label="Ana bölümler">
       <button class="main-tab active" data-page="focusPage">Odak</button>
-      <button class="main-tab" data-page="tasksPage">Görevler</button>
-      <button class="main-tab" data-page="statsPage">İstatistik</button>
-      <button class="main-tab" data-page="morePage">Daha fazla</button>
+      <button class="main-tab" data-page="agendaPage">Ajanda</button>
+      <button class="main-tab" data-page="roomPage">Oda</button>
+      <button class="main-tab" data-page="tasksPage">Görev</button>
+      <button class="main-tab" data-page="profilePage">Profil</button>
     </nav>
 
     <section id="focusPage" class="page active">
@@ -39,187 +37,137 @@
           <button class="mode-tab" data-mode="short">Kısa mola</button>
           <button class="mode-tab" data-mode="long">Uzun mola</button>
         </div>
-
-        <p id="modeLabel" class="status-label">ODAK ZAMANI</p>
-        <div id="timer" class="timer" aria-live="polite">25:00</div>
-
-        <div id="mikiRoom" class="miki-room room-0">
-          <div class="room-window"><span></span></div>
-          <div class="room-plant">♧</div>
-          <div class="room-books">▥</div>
-          <div id="mikiScene" class="miki-scene sleeping stage-0">
-            <div class="sparkles"><i>✦</i><i>✧</i><i>✦</i></div>
-            <div class="book"><span></span></div>
-            <button id="mikiButton" class="miki" type="button" aria-label="Miki'yi sev">
-              <span class="tail"></span><span class="body"></span>
-              <span class="head"><span class="ear ear-left"></span><span class="ear ear-right"></span>
-                <span class="eye eye-left"></span><span class="eye eye-right"></span>
-                <span class="nose"></span><span class="mouth"></span>
-                <span class="whisker w1"></span><span class="whisker w2"></span>
-                <span class="whisker w3"></span><span class="whisker w4"></span>
-              </span>
-              <span class="paw paw-left"></span><span class="paw paw-right"></span>
-            </button>
-            <div class="cushion"></div>
-          </div>
+        <div class="timer-heading"><p id="modeLabel" class="status-label">ODAK ZAMANI</p><span id="focusStageBadge" class="badge-pill">Yavru Miki</span></div>
+        <div id="timer" class="timer">25:00</div>
+        <div class="focus-pixel-scene">
+          <div class="focus-window"></div>
+          <img id="focusCat" class="pixel-cat focus-cat sleeping" src="assets/cats/tabby.png" alt="Miki" />
+          <div class="focus-cushion"></div>
         </div>
-
-        <p id="mikiMessage" class="miki-message">Miki seninle çalışmaya hazır.</p>
-        <p id="sessionHint" class="session-hint">Telefonu bırak. Sadece bu oturuma odaklan.</p>
-
-        <div class="controls">
-          <button id="resetButton" class="secondary-button">Sıfırla</button>
-          <button id="startButton" class="primary-button">Başlat</button>
-        </div>
+        <p id="mikiMessage" class="miki-message">Yavru Miki seninle çalışmaya hazır.</p>
+        <p id="sessionHint" class="session-hint">Her tam 25 dakikalık odak 10 coin kazandırır.</p>
+        <div class="controls"><button id="resetButton" class="secondary-button" type="button">Sıfırla</button><button id="startButton" class="primary-button" type="button">Başlat</button></div>
       </section>
 
       <section class="subject-card glass-panel">
-        <label for="subjectSelect">DERS</label>
-        <select id="subjectSelect"></select>
-        <button id="quickTaskButton" class="mini-button">+ Görev</button>
+        <label for="subjectSelect">DERS</label><select id="subjectSelect"></select><button id="quickAgendaButton" class="mini-button" type="button">+ Ajanda</button>
       </section>
-
       <section class="focus-tools glass-panel">
-        <div class="focus-note-wrap">
-          <label for="focusNote">BU OTURUMUN HEDEFİ</label>
-          <input id="focusNote" maxlength="100" placeholder="Örn. Klinik psikoloji 3. bölüm" />
-        </div>
-        <div class="ambience-wrap">
-          <label for="ambientSelect">ODAK SESİ</label>
-          <select id="ambientSelect">
-            <option value="off">Kapalı</option>
-            <option value="rain">Yağmur</option>
-            <option value="cafe">Kafe</option>
-            <option value="brown">Derin gürültü</option>
-          </select>
-          <button id="ambientToggle" class="mini-button" type="button">Çal</button>
-        </div>
+        <div><label for="focusNote">BU OTURUMUN HEDEFİ</label><input id="focusNote" maxlength="100" placeholder="Örn. Klinik psikoloji 3. bölüm" /></div>
+        <div class="ambience-wrap"><label for="ambientSelect">ODAK SESİ</label><select id="ambientSelect"><option value="off">Kapalı</option><option value="rain">Yağmur</option><option value="cafe">Kafe</option><option value="brown">Derin gürültü</option></select><button id="ambientToggle" class="mini-button" type="button">Çal</button></div>
       </section>
-
       <section class="stats-grid">
         <article class="stat-card glass-panel"><span>BUGÜN</span><strong id="todayMinutes">0 dk</strong><small>Toplam odak</small></article>
-        <article class="stat-card glass-panel"><span>POMODORO</span><strong id="pomodoroCount">0</strong><small>Tamamlandı</small></article>
-        <article class="stat-card wide glass-panel">
-          <div><span>SERİ</span><strong id="streakCount">0 gün</strong></div>
-          <p id="streakMessage">İlk çalışma gününü başlat.</p>
-        </article>
+        <article class="stat-card glass-panel"><span>COIN</span><strong id="focusCoins">0</strong><small>Oda bütçesi</small></article>
+        <article class="stat-card wide glass-panel"><div><span>SERİ</span><strong id="streakCount">0 gün</strong></div><p id="streakMessage">İlk çalışma gününü başlat.</p></article>
+      </section>
+      <section class="progress-card glass-panel"><div class="progress-header"><div><span>GÜNLÜK HEDEF</span><strong id="goalLabel">0 / 120 dk</strong></div><span id="goalPercent">0%</span></div><div class="progress-track"><div id="progressBar" class="progress-bar"></div></div></section>
+    </section>
+
+    <section id="agendaPage" class="page">
+      <section class="section-card glass-panel">
+        <div class="calendar-header"><button id="prevMonth" class="icon-button small" type="button">‹</button><div><p class="eyebrow">AJANDA</p><h2 id="calendarTitle"></h2></div><button id="nextMonth" class="icon-button small" type="button">›</button></div>
+        <div class="weekdays"><span>Pzt</span><span>Sal</span><span>Çar</span><span>Per</span><span>Cum</span><span>Cmt</span><span>Paz</span></div>
+        <div id="calendarGrid" class="calendar-grid"></div>
+      </section>
+      <section class="section-card glass-panel">
+        <div class="section-title"><div><p class="eyebrow">SEÇİLİ GÜN</p><h2 id="selectedDateTitle">Bugün</h2></div><span id="agendaSummary">0 plan</span></div>
+        <div class="agenda-form"><input id="agendaTitle" maxlength="70" placeholder="Plan veya çalışma konusu" /><div class="agenda-form-row"><input id="agendaTime" type="time" /><select id="agendaSubject"></select><button id="addAgendaButton" class="primary-button compact" type="button">Ekle</button></div></div>
+        <div id="agendaList" class="agenda-list"></div>
+      </section>
+    </section>
+
+    <section id="roomPage" class="page">
+      <section class="room-card glass-panel">
+        <div class="section-title"><div><p class="eyebrow">MİKİ’NİN ÇATI KATI</p><h2 id="roomStageTitle">Yavru Miki’nin odası</h2></div><span class="wallet">● <strong id="roomCoins">0</strong></span></div>
+        <div id="pixelRoom" class="pixel-room" data-time="evening" data-season="autumn" data-weather="clear">
+          <div class="room-sky"></div><div class="weather-layer"></div><img id="seasonOverlay" class="season-overlay" src="assets/room/season_autumn.png" alt="" />
+          <img class="room-base" src="assets/room/attic_base.png" alt="Cozy piksel çalışma odası" />
+          <div id="roomItems" class="room-items"></div>
+          <img id="roomCat" class="pixel-cat room-cat" src="assets/cats/tabby.png" alt="Miki" />
+        </div>
+        <div class="room-status-grid"><div><div class="status-row"><span>Büyüme</span><strong id="petGrowthText">0 / 8</strong></div><div class="progress-track"><div id="petGrowthBar" class="progress-bar"></div></div></div><div><div class="status-row"><span>Tokluk</span><strong id="petHungerText">70%</strong></div><div class="progress-track"><div id="petHungerBar" class="progress-bar hunger-bar"></div></div></div></div>
+        <p id="petMessage" class="muted-copy">Miki küçük, meraklı ve iştahlı.</p>
       </section>
 
-      <section class="progress-card glass-panel">
-        <div class="progress-header"><div><span>GÜNLÜK HEDEF</span><strong id="goalLabel">0 / 120 dk</strong></div><span id="goalPercent">0%</span></div>
-        <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+      <section class="section-card glass-panel">
+        <div class="section-title"><div><p class="eyebrow">ORTAM</p><h2>Zaman ve mevsim</h2></div></div>
+        <div class="simple-control"><span>Zaman</span><div id="timeChoices" class="choice-row"></div></div>
+        <div class="simple-control"><span>Mevsim</span><div id="seasonChoices" class="choice-row"></div></div>
+        <div class="simple-control"><span>Hava</span><div id="weatherChoices" class="choice-row"></div></div>
+      </section>
+
+      <section class="section-card glass-panel">
+        <div class="section-title"><div><p class="eyebrow">MİKİ</p><h2>Sokak kedisi görünümü</h2></div><span id="selectedCatName">Tekir</span></div>
+        <div id="catChoices" class="cat-grid"></div>
+      </section>
+
+      <section class="section-card glass-panel">
+        <div class="section-title"><div><p class="eyebrow">ODA MAĞAZASI</p><h2>Eşyalar</h2></div><div class="shop-filter"><button class="filter-chip active" data-shop-filter="all" type="button">Tümü</button><button class="filter-chip" data-shop-filter="owned" type="button">Alınanlar</button></div></div>
+        <p class="muted-copy">Eşyayı satın aldıktan sonra odaya koyabilir veya kaldırabilirsin.</p>
+        <div id="roomShop" class="room-shop"></div>
+      </section>
+
+      <section class="section-card glass-panel">
+        <div class="section-title"><div><p class="eyebrow">MAMA</p><h2>Miki’yi besle</h2></div><span id="foodInventoryCount">0 mama</span></div>
+        <div id="foodShop" class="food-shop"></div>
       </section>
     </section>
 
     <section id="tasksPage" class="page">
       <section class="section-card glass-panel">
+        <div class="section-title"><div><p class="eyebrow">GÜNLÜK GÖREVLER</p><h2>Coin kazan</h2></div><strong id="dailyQuestBonus">+20 bonus</strong></div>
+        <div id="dailyQuests" class="quest-list"></div>
+      </section>
+      <section class="section-card glass-panel">
         <div class="section-title"><div><p class="eyebrow">BUGÜN</p><h2>Görevler</h2></div><span id="taskSummary">0 / 0</span></div>
-        <form id="taskForm" class="task-form">
-          <input id="taskInput" maxlength="80" placeholder="Yeni görev yaz..." required />
-          <button class="primary-button compact" type="submit">Ekle</button>
-        </form>
+        <div class="task-form"><input id="taskInput" maxlength="80" placeholder="Yeni görev yaz..." /><button id="addTaskButton" class="primary-button compact" type="button">Ekle</button></div>
         <div id="taskList" class="task-list"></div>
       </section>
-
       <section class="section-card glass-panel">
         <div class="section-title"><div><p class="eyebrow">DERSLER</p><h2>Ders yönetimi</h2></div></div>
-        <form id="subjectForm" class="task-form">
-          <input id="subjectInput" maxlength="30" placeholder="Yeni ders..." required />
-          <button class="secondary-button compact" type="submit">Ekle</button>
-        </form>
+        <div class="task-form"><input id="subjectInput" maxlength="30" placeholder="Yeni ders..." /><button id="addSubjectButton" class="secondary-button compact" type="button">Ekle</button></div>
         <div id="subjectList" class="chip-list"></div>
       </section>
     </section>
 
-    <section id="statsPage" class="page">
-      <section class="section-card glass-panel">
-        <div class="section-title"><div><p class="eyebrow">SON 7 GÜN</p><h2>Haftalık odak</h2></div><strong id="weekTotal">0 dk</strong></div>
-        <div id="weekChart" class="week-chart"></div>
-      </section>
-
-      <section class="section-card glass-panel">
-        <div class="section-title"><div><p class="eyebrow">DERSLER</p><h2>Dağılım</h2></div></div>
-        <div id="subjectStats" class="subject-stats"></div>
-      </section>
-
-      <section class="section-card glass-panel">
-        <div class="section-title"><div><p class="eyebrow">MİKİ</p><h2>Oda seviyesi</h2></div><strong id="roomLevel">1</strong></div>
-        <p id="roomDescription" class="muted-copy">Miki’nin sade minderi.</p>
-        <div class="progress-track"><div id="roomProgress" class="progress-bar"></div></div>
-        <small id="roomNext">Sonraki gelişim için 10 Pomodoro.</small>
+    <section id="profilePage" class="page">
+      <section class="section-card glass-panel daily-card">
+        <div><p class="eyebrow">GÜNLÜK GİRİŞ</p><h2 id="dailyLoginTitle">Bugünün hediyesi</h2><p id="dailyLoginText" class="muted-copy">Her gün gel, coin serisini büyüt.</p></div>
+        <button id="claimDailyButton" class="primary-button compact" type="button">Hediyeyi al</button>
       </section>
       <section class="section-card glass-panel">
-        <div class="section-title"><div><p class="eyebrow">BAŞARILAR</p><h2>Rozetler</h2></div><strong id="badgeCount">0 / 6</strong></div>
-        <div id="badgeGrid" class="badge-grid"></div>
+        <div class="section-title"><div><p class="eyebrow">ARKADAŞLAR</p><h2>Odak çevren</h2></div><span id="friendCount">0 arkadaş</span></div>
+        <div class="friend-code-card"><div><small>SENİN KODUN</small><strong id="myFriendCode"></strong></div><button id="copyFriendCode" class="mini-button" type="button">Kopyala</button></div>
+        <div class="friend-form"><input id="friendName" maxlength="30" placeholder="Arkadaşın adı" /><input id="friendCode" maxlength="12" placeholder="BERN-XXXX" /><button id="addFriendButton" class="primary-button compact" type="button">Ekle</button></div>
+        <div id="friendList" class="friend-list"></div>
+        <p class="tiny-note">Bu GitHub Pages sürümünde arkadaş listesi cihazda saklanır. Canlı ilerleme senkronizasyonu için ileride çevrimiçi veritabanı gerekir.</p>
       </section>
-    </section>
-
-    <section id="morePage" class="page">
       <section class="section-card glass-panel">
-        <div class="section-title"><div><p class="eyebrow">SINAV</p><h2>Geri sayım</h2></div></div>
-        <div class="exam-card">
-          <input id="examName" maxlength="50" placeholder="Sınavın adı" />
-          <input id="examDate" type="date" />
-          <button id="saveExamButton" class="primary-button compact" type="button">Kaydet</button>
-        </div>
-        <div id="examCountdown" class="exam-countdown">
-          <strong>Henüz sınav eklenmedi</strong>
-          <small>Bir hedef tarihi eklediğinde burada geri sayım görünür.</small>
-        </div>
+        <div class="section-title"><div><p class="eyebrow">SON 7 GÜN</p><h2>Haftalık odak</h2></div><strong id="weekTotal">0 dk</strong></div><div id="weekChart" class="week-chart"></div>
       </section>
-
       <section class="section-card glass-panel">
-        <div class="section-title"><div><p class="eyebrow">ODAK GÜNLÜĞÜ</p><h2>Son oturumlar</h2></div></div>
-        <div id="sessionLog" class="session-log"></div>
+        <div class="section-title"><div><p class="eyebrow">BAŞARILAR</p><h2>Rozetler</h2></div><strong id="badgeCount">0 / 10</strong></div><div id="badgeGrid" class="badge-grid"></div>
       </section>
-
       <section class="section-card glass-panel">
-        <div class="section-title"><div><p class="eyebrow">YEDEKLEME</p><h2>Verilerini koru</h2></div></div>
-        <p class="muted-copy">Tüm görevleri, istatistikleri, dersleri ve ayarları tek dosyada dışa aktar.</p>
-        <div class="backup-actions">
-          <button id="exportButton" class="primary-button compact" type="button">Yedeği indir</button>
-          <label class="secondary-button compact import-label">Yedek yükle<input id="importInput" type="file" accept="application/json" /></label>
-        </div>
+        <div class="section-title"><div><p class="eyebrow">SINAV</p><h2>Geri sayım</h2></div></div><div class="exam-card"><input id="examName" maxlength="50" placeholder="Sınavın adı" /><input id="examDate" type="date" /><button id="saveExamButton" class="primary-button compact" type="button">Kaydet</button></div><div id="examCountdown" class="exam-countdown"></div>
+      </section>
+      <section class="section-card glass-panel">
+        <div class="section-title"><div><p class="eyebrow">ODAK GÜNLÜĞÜ</p><h2>Son oturumlar</h2></div></div><div id="sessionLog" class="session-log"></div>
+      </section>
+      <section class="section-card glass-panel">
+        <div class="section-title"><div><p class="eyebrow">YEDEKLEME</p><h2>Verilerini koru</h2></div></div><div class="backup-actions"><button id="exportButton" class="primary-button compact" type="button">Yedeği indir</button><label class="secondary-button compact import-label">Yedek yükle<input id="importInput" type="file" accept="application/json" /></label></div>
       </section>
     </section>
 
-    <footer><p>Bugün biraz ilerlemek, hiç başlamamaktan iyidir.</p></footer>
+    <footer><p>Sen odaklandıkça Miki’nin küçük dünyası büyür.</p></footer>
   </main>
 
-  <dialog id="settingsDialog">
-    <form method="dialog" class="settings-panel">
-      <div class="dialog-header">
-        <div><p class="eyebrow">BERNA V3</p><h2>Ayarlar</h2></div>
-        <button class="icon-button" value="cancel" aria-label="Kapat">×</button>
-      </div>
-
-      <section class="settings-section">
-        <h3>Süreler ve akış</h3>
-        <div class="setting-grid">
-          <label>Çalışma<input id="focusDuration" type="number" min="1" max="90" /></label>
-          <label>Kısa mola<input id="shortDuration" type="number" min="1" max="30" /></label>
-          <label>Uzun mola<input id="longDuration" type="number" min="1" max="60" /></label>
-          <label>Günlük hedef<input id="dailyGoal" type="number" min="10" max="600" step="10" /></label>
-        </div>
-        <label class="switch-row">Oturum bitince otomatik başlat<input id="autoStart" type="checkbox" /><span class="switch"></span></label>
-        <label>Odak sesi seviyesi <output id="ambientVolumeValue"></output><input id="ambientVolume" type="range" min="5" max="70" /></label>
-      </section>
-
-      <section class="settings-section">
-        <h3>Arka plan fotoğrafı</h3>
-        <p class="privacy-note">Fotoğraf yalnızca bu cihazda saklanır.</p>
-        <input id="backgroundInput" class="file-input" type="file" accept="image/*" />
-        <label class="upload-button" for="backgroundInput">Galeriden fotoğraf seç</label>
-        <button id="removeBackgroundButton" type="button" class="secondary-button compact">Fotoğrafı kaldır</button>
-        <label>Karartma <output id="darknessValue"></output><input id="backgroundDarkness" type="range" min="20" max="90" /></label>
-        <label>Bulanıklık <output id="blurValue"></output><input id="backgroundBlur" type="range" min="0" max="16" /></label>
-      </section>
-
-      <button id="saveSettingsButton" class="primary-button" value="default">Kaydet</button>
-      <button id="clearDataButton" type="button" class="danger-button">Tüm verileri sıfırla</button>
-    </form>
-  </dialog>
-
+  <dialog id="settingsDialog"><div class="settings-panel"><div class="dialog-header"><div><p class="eyebrow">BERNA V5</p><h2>Ayarlar</h2></div><button id="closeSettingsButton" class="icon-button" type="button">×</button></div>
+    <section class="settings-section"><h3>Süreler</h3><div class="setting-grid"><label>Çalışma<input id="focusDuration" type="number" min="1" max="120" /></label><label>Kısa mola<input id="shortDuration" type="number" min="1" max="30" /></label><label>Uzun mola<input id="longDuration" type="number" min="1" max="60" /></label><label>Günlük hedef<input id="dailyGoal" type="number" min="10" max="600" step="10" /></label></div><label class="switch-row">Otomatik başlat<input id="autoStart" type="checkbox" /><span class="switch"></span></label><label>Odak sesi seviyesi <output id="ambientVolumeValue"></output><input id="ambientVolume" type="range" min="5" max="70" /></label></section>
+    <section class="settings-section"><h3>Tema</h3><div id="themeGrid" class="theme-grid"></div></section>
+    <button id="saveSettingsButton" class="primary-button" type="button">Kaydet</button><button id="clearDataButton" class="danger-button" type="button">Tüm verileri sıfırla</button>
+  </div></dialog>
   <div id="toast" class="toast" role="status"></div>
   <script src="app.js"></script>
 </body>
