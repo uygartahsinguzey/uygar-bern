@@ -1,7 +1,7 @@
 {
-  "name": "Berna – Focus with Miki V5",
+  "name": "Berna – Günlük Odak ve Planlayıcı",
   "short_name": "Berna",
-  "description": "Piksel oda, ajanda, Pomodoro coinleri, sokak kedisi görünümleri ve arkadaş listesi.",
+  "description": "Pomodoro, tiklenebilir ajanda, yapılacaklar listeleri ve cozy Miki odası.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

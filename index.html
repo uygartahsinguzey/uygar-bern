@@ -15,7 +15,7 @@
 <body data-theme="midnight">
   <main class="app-shell">
     <header class="topbar glass-panel">
-      <div><p class="eyebrow">FOCUS WITH MIKI · V5</p><h1>BERNA</h1></div>
+      <div><p class="eyebrow">GÜNLÜK ODAK VE PLANLAYICI · V5.1</p><h1>BERNA</h1></div>
       <div class="header-actions">
         <button id="coinPill" class="coin-pill" type="button"><span>●</span><strong id="headerCoins">0</strong></button>
         <button id="settingsButton" class="icon-button" type="button" aria-label="Ayarlar">•••</button>
@@ -26,7 +26,7 @@
       <button class="main-tab active" data-page="focusPage">Odak</button>
       <button class="main-tab" data-page="agendaPage">Ajanda</button>
       <button class="main-tab" data-page="roomPage">Oda</button>
-      <button class="main-tab" data-page="tasksPage">Görev</button>
+      <button class="main-tab" data-page="tasksPage">Listeler</button>
       <button class="main-tab" data-page="profilePage">Profil</button>
     </nav>
 
@@ -66,13 +66,28 @@
 
     <section id="agendaPage" class="page">
       <section class="section-card glass-panel">
-        <div class="calendar-header"><button id="prevMonth" class="icon-button small" type="button">‹</button><div><p class="eyebrow">AJANDA</p><h2 id="calendarTitle"></h2></div><button id="nextMonth" class="icon-button small" type="button">›</button></div>
+        <div class="calendar-header"><button id="prevMonth" class="icon-button small" type="button" aria-label="Önceki ay">‹</button><div><p class="eyebrow">AJANDA</p><h2 id="calendarTitle"></h2></div><button id="nextMonth" class="icon-button small" type="button" aria-label="Sonraki ay">›</button></div>
         <div class="weekdays"><span>Pzt</span><span>Sal</span><span>Çar</span><span>Per</span><span>Cum</span><span>Cmt</span><span>Paz</span></div>
         <div id="calendarGrid" class="calendar-grid"></div>
       </section>
       <section class="section-card glass-panel">
-        <div class="section-title"><div><p class="eyebrow">SEÇİLİ GÜN</p><h2 id="selectedDateTitle">Bugün</h2></div><span id="agendaSummary">0 plan</span></div>
-        <div class="agenda-form"><input id="agendaTitle" maxlength="70" placeholder="Plan veya çalışma konusu" /><div class="agenda-form-row"><input id="agendaTime" type="time" /><select id="agendaSubject"></select><button id="addAgendaButton" class="primary-button compact" type="button">Ekle</button></div></div>
+        <div class="section-title agenda-title-row">
+          <div><p class="eyebrow">GÜNLÜK YAPILACAKLAR</p><h2 id="selectedDateTitle">Bugün</h2></div>
+          <span id="agendaSummary" class="agenda-summary-pill">0 / 0 tamamlandı</span>
+        </div>
+        <div class="agenda-progress" aria-label="Günlük tamamlanma oranı">
+          <div class="progress-track"><div id="agendaProgressBar" class="progress-bar"></div></div>
+          <strong id="agendaProgressText">0%</strong>
+        </div>
+        <div class="agenda-toolbar" aria-label="Yapılacaklar filtreleri">
+          <div class="agenda-filters">
+            <button class="filter-chip active" data-agenda-filter="all" type="button">Tümü</button>
+            <button class="filter-chip" data-agenda-filter="pending" type="button">Yapılacak</button>
+            <button class="filter-chip" data-agenda-filter="done" type="button">Tamamlandı</button>
+          </div>
+          <button id="clearCompletedAgenda" class="text-button" type="button">Tamamlananları temizle</button>
+        </div>
+        <div class="agenda-form"><input id="agendaTitle" maxlength="70" placeholder="Bugün ne yapmak istiyorsun?" /><div class="agenda-form-row"><input id="agendaTime" type="time" /><select id="agendaSubject"></select><button id="addAgendaButton" class="primary-button compact" type="button">Listeye ekle</button></div></div>
         <div id="agendaList" class="agenda-list"></div>
       </section>
     </section>

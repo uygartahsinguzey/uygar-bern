@@ -1,4 +1,4 @@
-# Berna – Focus with Miki V5
+# Berna V5.1 – Focus with Miki V5
 
 GitHub Pages üzerinde çalışan, iPhone ana ekranına eklenebilen cozy piksel Pomodoro uygulaması.
 
@@ -29,3 +29,15 @@ GitHub Pages üzerinde çalışan, iPhone ana ekranına eklenebilen cozy piksel 
 ## Arkadaş sistemi hakkında
 
 GitHub Pages yalnızca statik dosya barındırdığı için bu sürümde arkadaş kodları ve arkadaş listesi cihazda tutulur. Gerçek zamanlı arkadaş ilerlemesi, davetler ve ortak odak için ileride Firebase veya Supabase bağlantısı gerekir.
+
+
+## V5.1 yenilikleri
+
+- Ajanda artık tam bir günlük To‑Do listesi gibi çalışır.
+- Maddeler büyük ve görünür tik kutularıyla tamamlanabilir.
+- Günlük tamamlanma yüzdesi ve ilerleme çubuğu bulunur.
+- Tümü, Yapılacak ve Tamamlandı filtreleri eklendi.
+- Tamamlanan maddeler tek dokunuşla temizlenebilir.
+- Enter tuşuyla hızlı madde eklenebilir.
+- Yeni kullanıcılarda daha sıcak ve açık Kâğıt teması varsayılan gelir.
+- Kartlar, boş durumlar, butonlar ve metinler genel kullanıcı kitlesi için sadeleştirildi.
